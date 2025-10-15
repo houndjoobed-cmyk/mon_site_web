@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Moi Église TV - Suivez nos cultes en direct via notre application mobile">
+    <meta name="keywords" content="église, culte, direct, streaming, Bénin, Cotonou">
+    <title>Moi Église TV - Accueil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <div class="logo-box">
+                        <span class="logo-me">me</span>
+                        <span class="logo-tv">Tv</span>
+                    </div>
+                    <span class="logo-text">Moi Église TV</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Accueil</a></li>
+                    <li><a href="#live">🔴 Live</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#download">Télécharger</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="privacy.html">Confidentialité</a></li>
+                </ul>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Suivez nous en direct</h1>
+                <p class="hero-subtitle">
+                    Restez connecté à votre foi où que vous soyez avec l'application 
+                    officielle Moi Église TV
+                </p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 16L7 11L8.4 9.6L11 12.2V4H13V12.2L15.6 9.6L17 11L12 16Z" fill="currentColor"/>
+                            <path d="M20 18H4V20H20V18Z" fill="currentColor"/>
+                        </svg>
+                        Télécharger l'app
+                    </a>
+                    <a href="#about" class="btn btn-secondary">En savoir plus</a>
+                </div>
+                <div class="hero-badges">
+                    <span class="badge">✓ Gratuit</span>
+                    <span class="badge">✓ Sans publicité</span>
+                    <span class="badge">✓ HD Quality</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="live-indicator">🔴 LIVE</div>
+                        <div class="phone-content">
+                            <div class="logo-large">
+                                <span class="logo-me-large">me</span>
+                                <span class="logo-tv-large">Tv</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Streaming Section -->
+    <section class="live-section" id="live">
+        <div class="container">
+            <h2 class="section-title">🔴 Regardez en Direct</h2>
+            <p class="section-subtitle">Suivez nous en direct depuis votre navigateur</p>
+            
+            <div class="live-player-container">
+                <div class="live-badge-top">
+                    <span class="live-dot"></span>
+                    <span>EN DIRECT</span>
+                </div>
+                
+                <div id="video-container">
+                    <video id="live-video" controls playsinline>
+                        <source src="https://terranoweb.duckdns.org/live/MoiEgliseTV/index.m3u8" type="application/x-mpegURL">
+                        Votre navigateur ne supporte pas la lecture vidéo.
+                    </video>
+                    
+                    <div id="loading-message" class="loading-overlay">
+                        <div class="loading-content">
+                            <div class="loading-spinner"></div>
+                            <p>Chargement du flux en direct...</p>
+                        </div>
+                    </div>
+                    
+                    <div id="error-message" class="error-overlay" style="display: none;">
+                        <div class="error-content">
+                            <div class="error-icon">⚠️</div>
+                            <h3>Impossible de charger le flux</h3>
+                            <p>Le streaming n'est peut-être pas encore commencé ou votre connexion est instable.</p>
+                            <button id="retry-button" class="btn btn-primary">Réessayer</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="live-controls">
+                    <div class="control-left">
+                        <button id="play-pause-btn" class="control-btn">
+                            <span class="play-icon">▶</span>
+                            <span class="pause-icon" style="display: none;">⏸</span>
+                        </button>
+                        <button id="mute-btn" class="control-btn">
+                            <span class="volume-on">🔊</span>
+                            <span class="volume-off" style="display: none;">🔇</span>
+                        </button>
+                        <div class="volume-slider">
+                            <input type="range" id="volume-control" min="0" max="100" value="100">
+                        </div>
+                        <span id="time-display" class="time-display">EN DIRECT</span>
+                    </div>
+                    <div class="control-right">
+                        <button id="quality-btn" class="control-btn" title="Qualité">HD</button>
+                        <button id="fullscreen-btn" class="control-btn">⛶</button>
+                    </div>
+                </div>
+                
+                <div class="live-stats">
+                    <div class="stat-item">
+                        <span class="stat-icon">👥</span>
+                        <span id="viewer-count">-</span>
+                        <span class="stat-label">spectateurs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">⏱</span>
+                        <span id="stream-duration">00:00</span>
+                        <span class="stat-label">durée</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="live-cta">
+                <p class="cta-text">
+                    💡 <strong>Conseil :</strong> Pour une meilleure expérience, téléchargez notre application mobile
+                </p>
+                <a href="#download" class="btn btn-primary">
+                    📱 Télécharger l'application
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="about">
+        <div class="container">
+            <h2 class="section-title">Pourquoi télécharger notre application ?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📺</div>
+                    <h3>Streaming en Direct HD</h3>
+                    <p>Suivez tous nos cultes et événements en direct avec une qualité vidéo optimale</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🙏</div>
+                    <h3>Ne manquez plus rien</h3>
+                    <p>Restez connecté à la communauté même si vous ne pouvez pas être présent physiquement</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Simple et Intuitive</h3>
+                    <p>Interface moderne et facile à utiliser. Aucune inscription requise</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Accessible Partout</h3>
+                    <p>Où que vous soyez dans le monde, suivez nos cultes sur votre téléphone</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Notifications</h3>
+                    <p>Recevez des alertes pour ne jamais manquer le début d'un culte (bientôt disponible)</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚫</div>
+                    <h3>Sans Publicité</h3>
+                    <p>Une expérience spirituelle sans interruption ni distraction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <div class="container">
+            <h2 class="section-title">Téléchargez l'application maintenant</h2>
+            <p class="section-subtitle">Disponible gratuitement sur Android</p>
+            <div class="download-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.moieglise.tv" class="store-button" target="_blank">
+                    <svg width="30" height="30" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    <div>
+                        <small>Disponible sur</small>
+                        <strong>Google Play</strong>
+                    </div>
+                </a>
+                <div class="qr-code">
+                    <div class="qr-placeholder">
+                        <p>QR Code</p>
+                        <small>Scannez pour télécharger</small>
+                    </div>
+                </div>
+            </div>
+            <p class="download-note">
+                📱 Version iOS à venir prochainement
+            </p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">1K+</div>
+                    <div class="stat-label">Téléchargements</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8★</div>
+                    <div class="stat-label">Note moyenne</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Gratuit</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Disponible</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-nous</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:moieglisecontact@gmail.com">moieglisecontact@gmail.com</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Téléphone</h3>
+                    <p><a href="tel:+2290165185630">+229 01 65 18 56 30</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Adresse</h3>
+                    <p>Abomey-Calavi,<br>République du Bénin</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🌐</div>
+                    <h3>Réseaux sociaux</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61582378011655" target="https://www.facebook.com/profile.php?id=61582378011655">Facebook</a>
+                        <a href="#" target="_blank">Instagram</a>
+                        <a href="https://www.youtube.com/channel/UC0xXEvqCFj677FCXOai1Tzw" target="https://www.youtube.com/channel/UC0xXEvqCFj677FCXOai1Tzw">YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo-box">
+                        <span class="logo-me">me</span>
+                        <span class="logo-tv">Tv</span>
+                    </div>
+                    <p>Moi Église TV - Connectés par la foi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#download">Télécharger</a></li>
+                        <li><a href="privacy.html">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: moieglisecontact@gmail.com</li>
+                        <li>Tél: +229 0165185630</li>
+                        <li>Abomey-Calavi, Bénin</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Moi Église TV - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK - DOIT ÊTRE AVANT script.js -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    
+    <script>
+         const firebaseConfig = {
+    apiKey: "AIzaSyAN_c33VoVenGJ7BBGtMQJ7v5HDA9w_uNQ",
+    authDomain: "moi-eglise-tv-ac000.firebaseapp.com",
+    databaseURL: "https://moi-eglise-tv-ac000-default-rtdb.firebaseio.com",
+    projectId: "moi-eglise-tv-ac000",
+    storageBucket: "moi-eglise-tv-ac000.firebasestorage.app",
+    messagingSenderId: "87127040695",
+    appId: "1:87127040695:web:7672b2001b13f745cf6332"
+  };
+
+    
+    try {
+        firebase.initializeApp(firebaseConfig);
+        console.log('✅ Firebase initialisé avec succès');
+        
+        const database = firebase.database();
+        const viewerRef = database.ref('live-viewers').push();
+        
+        viewerRef.set({
+            online: true,
+            timestamp: firebase.database.ServerValue.TIMESTAMP,
+            platform: 'web'
+        });
+        
+        viewerRef.onDisconnect().remove();
+        
+        database.ref('live-viewers').on('value', (snapshot) => {
+            const count = snapshot.numChildren();
+            const viewerCountElement = document.getElementById('viewer-count');
+            if (viewerCountElement) {
+                viewerCountElement.textContent = count;
+                console.log('👥 Spectateurs en direct:', count);
+            }
+        });
+        
+    } catch (error) {
+        console.error('❌ Erreur Firebase:', error);
+    }
+    </script>
+    
+    <!-- Script principal - APRÈS Firebase -->
+    <script src="script.js"></script>
+
+</body>
+</html>
